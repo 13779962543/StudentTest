@@ -56,6 +56,21 @@
 
     </style>
 
+    <script>
+        function search(){
+            //拿回来要搜索的信息
+            let v=document.getElementById("fileId").value;
+
+            /*
+            v id 名字
+             */
+            window.location.href="mainServlet?v="+v+"&id=${user.getU_id()}";
+        }
+
+        function goShow(v){
+            window.location.href="show?v="+v;
+        }
+    </script>
 
 </head>
 <body>
@@ -71,7 +86,7 @@
 <div id="search">
     <div id="inner_s">
         <input type="text" style="font-size: 20px; height: 26px;width: 190px" id="fileId">&nbsp;&nbsp;
-        <button  style="font-size: 18px; height: 28px;" onclick="search(document.getElementById(fileId).value)">查询</button>
+        <button  style="font-size: 18px; height: 28px;" onclick="search()">查询</button>
     </div>
 </div>
 
@@ -90,7 +105,7 @@
                 <td>${item.getU_id()}</td>
                 <td>${item.getU_name()}</td>
                 <td>${item.getU_phone()}</td>
-                <td><button style="color: chocolate">查看成绩</button></td>
+                <td><button style="color: chocolate" onclick="goShow(${item.getU_id()})">查看成绩</button></td>
                 <td><button style="color: chocolate">修改</button>
                     <button style="color: chocolate">删除</button>
                 </td>

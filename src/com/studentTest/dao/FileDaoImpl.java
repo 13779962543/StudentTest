@@ -44,4 +44,57 @@ public class FileDaoImpl implements FileDao{
         return arr;
 
     }
+
+    @Override
+    public User getFileByNameOrId(String v) {
+        Connection connection= ConnectionFactory.getConnection();
+        PreparedStatement pre=null;
+        ResultSet res=null;
+        //准备sql语句
+        String sql="SELECT*FROM studenttest.u_user WHERE u_name='"+v+"'";
+        try{
+            pre=connection.prepareStatement(sql);
+            res=pre.executeQuery();
+
+            while(res.next()){
+                User user2=new User();
+                user2.setU_id(res.getInt("u_id"));
+                user2.setU_name(res.getString("u_name"));
+
+                user2.setU_pwd(res.getString("u_pwd"));
+                user2.setU_phone(res.getString("u_phone"));
+                user2.setRole(res.getInt("u_role"));
+                user2.setIsdelte(res.getInt("u_isdelte"));
+                return user2;
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public User getAdmine(String id) {
+        Connection connection= ConnectionFactory.getConnection();
+        PreparedStatement pre=null;
+        ResultSet res=null;
+        //准备sql语句
+        String sql="SELECT*FROM studenttest.u_user WHERE u_id="+id;
+        try{
+            pre=connection.prepareStatement(sql);
+            res=pre.executeQuery();
+
+            while(res.next()){
+                User user=new User();
+                user.setU_id(res.getInt("u_id"));
+                user.setU_name(res.getString("u_name"));
+                return user;
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

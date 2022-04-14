@@ -6,4 +6,8 @@ import java.util.ArrayList;
 
 public interface FileService {
     ArrayList<User> getAllStudent();
+
+    User getFileByNameOrId(String v);
+
+    User getAdmine(String id);
 }
