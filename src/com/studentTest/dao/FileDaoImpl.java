@@ -1,5 +1,6 @@
 package com.studentTest.dao;
 
+import com.studentTest.bean.Major;
 import com.studentTest.bean.User;
 import com.studentTest.util.ConnectionFactory;
 
@@ -96,5 +97,49 @@ public class FileDaoImpl implements FileDao{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public ArrayList getPersonFile(String studentId) {
+        Connection connection= ConnectionFactory.getConnection();
+        PreparedStatement pre=null;
+        ResultSet res=null;
+        //准备sql语句
+        String sql="SELECT c_name courseName,c_score c_score FROM"+
+                " studenttest.course a,studenttest.userchoose b WHERE a.c_id=b.c_id AND b.u_id="+studentId;
+        System.out.println(sql);
+        ArrayList<Major> arr=new ArrayList<>();
+        try{
+            pre=connection.prepareStatement(sql);
+            res=pre.executeQuery();
+
+            while(res.next()){
+                Major m=new Major();
+                m.setA(res.getString("courseName"));
+                m.setB(res.getString("c_score"));
+                arr.add(m);
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return arr;
+    }
+
+    public void ins(String sql) {
+        Connection connection= ConnectionFactory.getConnection();
+        PreparedStatement pre=null;
+        ResultSet res=null;
+        //准备sql语句
+
+
+        try {
+            pre=connection.prepareStatement(sql);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

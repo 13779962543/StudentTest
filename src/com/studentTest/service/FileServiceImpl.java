@@ -1,5 +1,6 @@
 package com.studentTest.service;
 
+import com.studentTest.bean.Major;
 import com.studentTest.bean.User;
 import com.studentTest.dao.FileDao;
 import com.studentTest.dao.FileDaoImpl;
@@ -24,5 +25,11 @@ public class FileServiceImpl implements FileService{
     @Override
     public User getAdmine(String id) {
         return fs.getAdmine(id);
+    }
+
+    @Override
+    public ArrayList getPersonFile(String studentId) {
+       return fs.getPersonFile(studentId);
+
     }
 }
