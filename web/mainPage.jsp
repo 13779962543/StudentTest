@@ -68,7 +68,22 @@
         }
 
         function goShow(v){
-            window.location.href="show?v="+v;
+            window.location.href="show?v="+v+"&id=${user.getU_id()}";
+        }
+        function del(v){
+            let isdel=confirm("是否删除 "+v+"同学?")
+            if(isdel){
+               window.location.href="del?v="+v+"&id=${user.getU_id()}";
+            }else {
+                return;
+            }
+        }
+        function upDate(v){
+            /*
+            管理员id
+            1.跳转到服务器，从服务器里跳转到修改页面
+             */
+            window.location.href="upTo?stuId="+v+"&admId=${user.getU_id()}";
         }
     </script>
 
@@ -106,8 +121,8 @@
                 <td>${item.getU_name()}</td>
                 <td>${item.getU_phone()}</td>
                 <td><button style="color: chocolate" onclick="goShow(${item.getU_id()})">查看成绩</button></td>
-                <td><button style="color: chocolate">修改</button>
-                    <button style="color: chocolate">删除</button>
+                <td><button style="color: chocolate" onclick="upDate(${item.getU_id()})">修改</button>
+                    <button style="color: chocolate" onclick="del(${item.getU_id()})">删除</button>
                 </td>
             </tr>
 

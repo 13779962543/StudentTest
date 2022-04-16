@@ -13,4 +13,8 @@ public interface FileDao {
     User getAdmine(String id);
 
     ArrayList getPersonFile(String studentId);
+
+    void del(String stu);
+
+    void upScore(String stuId, String a, String b, String c, String d);
 }

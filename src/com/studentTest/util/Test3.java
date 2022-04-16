@@ -5,7 +5,7 @@ import com.studentTest.dao.FileDaoImpl;
 
 public class Test3 {
     public static void main(String[] args){
-        for(int i=1002;i<=1006;i++){
+        for(int i=1002;i<=1010;i++){
             int score[]=new int[4];
             for(int j=0;j<4;j++){
                score[j]= (int)(Math.random()*100);

@@ -126,6 +126,58 @@ public class FileDaoImpl implements FileDao{
         return arr;
     }
 
+    @Override
+    public void del(String stu) {
+        /*
+        要查询，询问一类的(kind):res=pre.executeQuery();
+        增加  删除  修改  这三项都是属于更新类的pre.executeUpdate();
+         */
+        Connection connection= ConnectionFactory.getConnection();
+        PreparedStatement pre=null;
+        ResultSet res=null;
+        //准备sql语句
+
+        String sql1="DELETE FROM studenttest.u_user WHERE u_id="+stu;
+        String sql2="DELETE FROM studenttest.userchoose WHERE u_id="+stu;
+        try {
+            pre=connection.prepareStatement(sql1);
+            pre.executeUpdate();
+            pre=connection.prepareStatement(sql2);
+            pre.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void upScore(String stuId, String a, String b, String c, String d) {
+        Connection connection= ConnectionFactory.getConnection();
+        PreparedStatement pre=null;
+        ResultSet res=null;
+        String[] file={a,b,c,d};//4
+        int index=0;
+        //准备sql语句s
+        try {
+            for(int i=1001;i<=1004;i++){
+                String sql="UPDATE studenttest.userchoose SET c_score="+file[index]+" WHERE u_id="+stuId+" AND c_id="+i;
+                index++;
+                System.out.println(sql);
+                pre=connection.prepareStatement(sql);
+                pre.executeUpdate();
+
+            }
+//            pre=connection.prepareStatement(sql1);
+//            pre.executeUpdate();
+//            pre=connection.prepareStatement(sql2);
+//            pre.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     public void ins(String sql) {
         Connection connection= ConnectionFactory.getConnection();
         PreparedStatement pre=null;

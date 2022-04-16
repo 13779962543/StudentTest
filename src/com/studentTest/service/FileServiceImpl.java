@@ -32,4 +32,14 @@ public class FileServiceImpl implements FileService{
        return fs.getPersonFile(studentId);
 
     }
+
+    @Override
+    public void del(String stu) {
+        fs.del(stu);
+    }
+
+    @Override
+    public void upScore(String stuId, String a, String b, String c, String d) {
+        fs.upScore(stuId,a,b,c,d);
+    }
 }
